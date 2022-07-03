@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { Box } from './styles';
+import MovieList from './components/movie-list/index.js';
+import StarShips from './components/starships/index.js';
+import { useState, useEffect } from 'react';
 
 function App() {
+  const [page, setPage] = useState('movies')
+  const [selectedMovie, setselectedMovie] = useState(null)
+
+  useEffect(()=> {
+    console.log(selectedMovie);
+  }, [selectedMovie])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box>
+      {
+        page === 'movies' 
+        ? 
+          <MovieList 
+            setPage={setPage}
+            setselectedMovie={setselectedMovie}
+            />: 
+        <>
+        {
+          selectedMovie? 
+            <StarShips
+              setPage={setPage} 
+              selectedMovie={selectedMovie} />:
+            null
+        }
+          </>
+        
+      }
+      
+    </Box>
   );
 }
 
