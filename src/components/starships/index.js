@@ -1,6 +1,8 @@
+// import { Starships } from './../../../public/static/mock';
 import { useEffect, useState } from "react";
 import StarShipsInfo from "../starship-info";
 import { Header, Wrapper, Pagination, Btn, Loading } from './styles';
+import PropTypes from 'prop-types';
 
 const StarShips = ({ setPage, selectedMovie }) => {
     const [Starships, fetchStarships] = useState([]) 
@@ -26,10 +28,6 @@ const StarShips = ({ setPage, selectedMovie }) => {
         
     }, [selectedMovie])
 
-    useEffect(()=>{
-        console.log(selectedStarShip);
-    }, [selectedStarShip])
-
     let p = 0
     return(
         info?<StarShipsInfo setInfo={setInfo} selectedStarShip={selectedStarShip}/>:
@@ -46,6 +44,7 @@ const StarShips = ({ setPage, selectedMovie }) => {
                         <Btn onClick={()=>setPage('movies')}>Back</Btn>
                         <Pagination>
                             {
+                                // eslint-disable-next-line array-callback-return
                                 selectedMovie.starships.map((i, idx) => {
                                     if(idx % 5 === 0){
                                         p += 1
@@ -63,7 +62,11 @@ const StarShips = ({ setPage, selectedMovie }) => {
             }
         </>
     )
+}
 
+StarShips.propTypes = {
+    setPage: PropTypes.func, 
+    selectedMovie: PropTypes.object
 }
 
 export default StarShips

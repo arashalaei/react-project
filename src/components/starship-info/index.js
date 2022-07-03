@@ -1,4 +1,5 @@
 import { Header, Container, Wrapper, Btn } from "./styles";
+import PropTypes from 'prop-types';
 
 const StarShipsInfo = ({ setInfo, selectedStarShip }) => {
 
@@ -17,6 +18,11 @@ const StarShipsInfo = ({ setInfo, selectedStarShip }) => {
             </Wrapper>
         </Container>
     </>)
+}
+
+StarShipsInfo.propTypes = {
+    setInfo: PropTypes.func, 
+    selectedStarShip: PropTypes.object
 }
 
 export default StarShipsInfo

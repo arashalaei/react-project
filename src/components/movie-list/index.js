@@ -1,6 +1,8 @@
+// import { Movies } from './../../../public/static/mock';
 import { useEffect, useState } from "react";
 import { Header, MovieTitle, Wrapper, ReleaseDate, Btn, Loading } from './styles';
 import "./../../App.css";
+import PropTypes from 'prop-types';
 
 const MovieList = ({setPage, setselectedMovie}) => {
     const [Movies, fetchMovies] = useState([]) 
@@ -16,16 +18,6 @@ const MovieList = ({setPage, setselectedMovie}) => {
                 )
             );
             fetchMovies(res)
-            // [4, 5, 6, 1, 2, 3].forEach(
-            //     order => {
-            //         fetch(`https://swapi.dev/api/films/${order}`)
-            //             .then((res) => res.json())
-            //             .then((res) => {
-            //                 fetchMovies(oldArray => [...oldArray, res]);
-            //             })
-            //     }
-            // )
-
         }
         getData()
     }, [])
@@ -50,6 +42,11 @@ const MovieList = ({setPage, setselectedMovie}) => {
             }
         </>
     )
+}
+
+MovieList.propTypes = {
+    setPage: PropTypes.func, 
+    selectedMovie: PropTypes.arrayOf(PropTypes.string)
 }
 
 export default MovieList;
