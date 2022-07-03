@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Header, MovieTitle, Wrapper, ReleaseDate, Btn, Loading } from './styles';
 import "./../../App.css";
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 const MovieList = ({setPage, setselectedMovie}) => {
     const [Movies, fetchMovies] = useState([]) 
@@ -31,10 +32,11 @@ const MovieList = ({setPage, setselectedMovie}) => {
                         (movie, idx) => <Wrapper key={idx}>
                             <MovieTitle>{movie.title}{`(${movie.episode_id})`}</MovieTitle>
                             <ReleaseDate>{movie.release_date}</ReleaseDate>
-                            <Btn onClick={() => {
+                            <Link to={`/Movie/${movie.episode_id}/starships`}><Btn onClick={() => {
                                 setselectedMovie(movie)
                                 setPage('starships')
-                                }} >Satarships</Btn>
+                                }} >Satarships</Btn></Link>
+                            
                         </Wrapper>
                     )
                 :

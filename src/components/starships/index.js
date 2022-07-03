@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import StarShipsInfo from "../starship-info";
 import { Header, Wrapper, Pagination, Btn, Loading } from './styles';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 const StarShips = ({ setPage, selectedMovie }) => {
     const [Starships, fetchStarships] = useState([]) 
@@ -11,7 +12,6 @@ const StarShips = ({ setPage, selectedMovie }) => {
     const [info, setInfo] = useState(false)
 
     useEffect(()=>{
-
         const getData = async() => {
             const starshipsFetche = [];
             selectedMovie.starships.forEach(api => starshipsFetche.push(fetch(api)));
@@ -41,7 +41,7 @@ const StarShips = ({ setPage, selectedMovie }) => {
                         setInfo(true)
                         }}>{starship.name}</Btn>)}
                     <Wrapper style={{ padding: '1rem 0 0 0 '}}>
-                        <Btn onClick={()=>setPage('movies')}>Back</Btn>
+                        <Link to="/"><Btn onClick={()=>setPage('movies')}>Back</Btn></Link>
                         <Pagination>
                             {
                                 // eslint-disable-next-line array-callback-return

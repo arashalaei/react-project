@@ -2,6 +2,7 @@ import { Box } from './styles';
 import MovieList from './components/movie-list/index.js';
 import StarShips from './components/starships/index.js';
 import { useState } from 'react';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
   const [page, setPage] = useState('movies')
@@ -9,7 +10,7 @@ function App() {
 
   return (
     <Box>
-      {
+      {/* {
         page === 'movies' 
         ? 
           <MovieList 
@@ -26,8 +27,15 @@ function App() {
         }
           </>
         
-      }
-      
+      } */}
+
+    <BrowserRouter>
+      <Routes>
+        <Route exact path='' element={<MovieList setPage={setPage} setselectedMovie={setselectedMovie}/>}/>
+        <Route exact path='/Movies' element={<MovieList setPage={setPage} setselectedMovie={setselectedMovie}/>}/>
+        <Route exact path='/Movie/:id/starships' element={<StarShips  setPage={setPage} selectedMovie={selectedMovie}/>}/>
+      </Routes>
+      </BrowserRouter>
     </Box>
   );
 }
